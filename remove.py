@@ -36,6 +36,6 @@ for i in range(1,len(sys.argv)):
         if os.path.exists(path+component):
             shutil.rmtree(path+component)
             remove_route(component)
-            print()
+            print("Removed")
     except:
         print(component+" component already exists")

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {  Router, Route,Switch,BrowserRouter} from 'react-router-dom';
 import Guru2 from './Guru2/Guru2';
+import Not_found from './Not_found/Not_found';
 // import { Router, Route} from 'react-router'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -20,6 +21,7 @@ ReactDOM.render((
             <Route exact path="/" component={App} />
             <Route path="/test" component={Test} />
 			<Route path="/guru2" component={Guru2} />
+			<Route component={Not_found} />
         </Switch>
     </Router>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {  Router, Route,Switch,BrowserRouter} from 'react-router-dom';
 import Guru from './Guru/Guru';
 import Guru1 from './Guru1/Guru1';
+import Guru2 from './Guru2/Guru2';
 // import { Router, Route} from 'react-router'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -22,6 +23,7 @@ ReactDOM.render((
             <Route path="/test" component={Test} />
 			<Route path="/guru" component={Guru} />
 			<Route path="/guru1" component={Guru1} />
+			<Route path="/guru2" component={Guru2} />
         </Switch>
     </Router>
     </BrowserRouter>
