@@ -1,5 +1,6 @@
 import sys,os,re
 import shutil
+from html import escape
 
 path="./src/"
 
@@ -46,7 +47,7 @@ let page=
 
 export default page;
     '''
-    f = open(path+component+"/"+component+".Html.js", "w")
+    f = open(path+component+"/"+component+"Html.js", "w")
     f.write(content)
     f.close()
 
@@ -61,7 +62,7 @@ def css(name):
     f.close()
 
 def add_route(name):
-    f = open(path+"index.js", "r+")
+    f = open(path+"index.js", "r")
     content=f.read()
     if os.path.exists(path+'index_bak.js'):
         os.remove(path+'index_bak.js')
@@ -72,30 +73,33 @@ def add_route(name):
     line_arr=content.split("\n")
     line_count=0
     for line in line_arr:
-        if re.search("^import",line):
-            print(line)
-        else:
-            line_arr.insert(line_count,"import "+name+" from './ "+name.lower()+"/ "+name+"';")
+        if not re.search("^import",line):
+            line_arr.insert(line_count,"import "+name+" from './"+name+"/"+name+"';")
             break
         line_count+=1
     line_count=0;
+    found=False
     for line in line_arr:
-        if re.search("^\t+<Route path=",line):
-            print(line)
+        if re.search(escape("<Route path="),escape(line)):
+            found=True
         else:
-            line_arr.insert(line_count," <Route path=\"/"+name.lower()+"\" component={"+name+"} />")
-            break
+            if found==True:
+                line_arr.insert(line_count,"\t\t<Route path=\"/"+name.lower()+"\" component={"+name+"} />")
+                break
         line_count+=1
-    print("\n".join(line_arr))
-
+    f.close()
+    f = open(path+"index.js", "w")
+    f.write("\n".join(line_arr))
+    f.close()
 
 for i in range(1,len(sys.argv)): 	
-    component=sys.argv[i]
-    shutil.rmtree(path+component)
+    component=sys.argv[i].capitalize()
+    if os.path.exists(path+component):
+        shutil.rmtree(path+component)
     os.mkdir(path+component)
-    js(component.capitalize())
-    html(component.capitalize())
-    css(component.capitalize())
-    add_route(component.capitalize())
+    js(component)
+    html(component)
+    css(component)
+    add_route(component)
 
    

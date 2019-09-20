@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { createBrowserHistory } from 'history'
 import App from './App/App';
 import Test from './test/Test';
+import Guru from './Guru/Guru';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -15,6 +16,7 @@ ReactDOM.render((
     <Router history={history}>
         <Route exact path="/" component={App} />
         <Route path="/test" component={Test} />
+		<Route path="/guru" component={Guru} />
     </Router>
 ), document.getElementById('root'))
 
