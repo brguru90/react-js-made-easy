@@ -1,7 +1,7 @@
 ## Available Scripts
 
 ### Add components like Angular cli
-#### `./add component1 component2`
+`./add component1 component2`
  OR
 #### `python3 add component1 component2`
 
