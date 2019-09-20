@@ -4,13 +4,13 @@
 #### OR
 ### `python3 add component1 component2`
 
-Add components like Angular cli
+Add components like Angular cli<br>
 
 ### `./remove component1 component2`
 #### OR
 ### `python3 remove component1 component2`
 
-Remove components
+Remove components<br>
 
 ### `npm start`
 
