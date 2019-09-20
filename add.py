@@ -4,6 +4,7 @@ from html import escape
 
 path="./src/"
 
+# -----------------------------------------JS--------------------------------------
 def js(name):
     content='''
 import React from 'react';
@@ -31,36 +32,47 @@ class '''+name+''' extends React.Component {
 
 export default '''+name+''';
     '''
-    f = open(path+component+"/"+component+".js", "w")
+    w_path=path+component+"/"+component+".js"
+    print(w_path)
+    f = open(w_path, "w")
     f.write(content)
     f.close()
 
+# -----------------------------------------HTML--------------------------------------
 def html(name):
     content='''
 import React from 'react';
+import { Link } from 'react-router-dom';
 let page=
 
 <div className="'''+name+'''">
     <h1>Welcome</h1>
     <h2>'''+name+'''</h2>
+    <Link to='/'>App</Link>
 </div>
 
 export default page;
     '''
-    f = open(path+component+"/"+component+"Html.js", "w")
+    w_path=path+component+"/"+component+"Html.js"
+    print(w_path)
+    f = open(w_path, "w")
     f.write(content)
     f.close()
 
+# -----------------------------------------CSS--------------------------------------
 def css(name):
     content='''
 .'''+name+''' {
     text-align: center;
 }
 '''
-    f = open(path+component+"/"+component+".css", "w")
+    w_path=path+component+"/"+component+".css"
+    print(w_path)
+    f = open(w_path, "w")
     f.write(content)
     f.close()
 
+# -----------------------------------------ROUTE--------------------------------------
 def add_route(name):
     f = open(path+"index.js", "r")
     content=f.read()
@@ -84,7 +96,7 @@ def add_route(name):
             found=True
         else:
             if found==True:
-                line_arr.insert(line_count,"\t\t<Route path=\"/"+name.lower()+"\" component={"+name+"} />")
+                line_arr.insert(line_count,"\t\t\t<Route path=\"/"+name.lower()+"\" component={"+name+"} />")
                 break
         line_count+=1
     f.close()
@@ -92,14 +104,21 @@ def add_route(name):
     f.write("\n".join(line_arr))
     f.close()
 
+
+# -----------------------------------------MAIN--------------------------------------
 for i in range(1,len(sys.argv)): 	
     component=sys.argv[i].capitalize()
-    if os.path.exists(path+component):
-        shutil.rmtree(path+component)
-    os.mkdir(path+component)
-    js(component)
-    html(component)
-    css(component)
-    add_route(component)
+    # if os.path.exists(path+component):
+    #     shutil.rmtree(path+component)
+    print("Creating "+component)
+    try:
+        os.mkdir(path+component)
+        js(component)
+        html(component)
+        css(component)
+        add_route(component)
+        print()
+    except:
+        print(component+" component already exists")
 
    

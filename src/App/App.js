@@ -2,11 +2,6 @@ import React from 'react';
 import './App.css';
 import page from './AppHtml'
 
-// function App() {
-//   return (
-//     <h1>Hi</h1>
-//   );
-// }
 
 class App extends React.Component {
   constructor(props) {
