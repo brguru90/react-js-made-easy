@@ -1,4 +1,7 @@
 import sys,os,re
+import shutil
+
+path="./src/"
 
 def js(name):
     content='''
@@ -27,7 +30,7 @@ class '''+name+''' extends React.Component {
 
 export default '''+name+''';
     '''
-    f = open(component+"/"+component+".js", "w")
+    f = open(path+component+"/"+component+".js", "w")
     f.write(content)
     f.close()
 
@@ -43,7 +46,7 @@ let page=
 
 export default page;
     '''
-    f = open(component+"/"+component+".Html.js", "w")
+    f = open(path+component+"/"+component+".Html.js", "w")
     f.write(content)
     f.close()
 
@@ -53,24 +56,46 @@ def css(name):
     text-align: center;
 }
 '''
-    f = open(component+"/"+component+".css", "w")
+    f = open(path+component+"/"+component+".css", "w")
     f.write(content)
     f.close()
 
 def add_route(name):
-    f = open("index.js", "r+")
+    f = open(path+"index.js", "r+")
     content=f.read()
-    if os.path.exists('index_bak.js'):
-        os.remove('index_bak.js')
-    f2 = open("index_bak.js", "w")
+    if os.path.exists(path+'index_bak.js'):
+        os.remove(path+'index_bak.js')
+    f2 = open(path+"index_bak.js", "w")
     f2.write(content)
     f2.close()
 
+    line_arr=content.split("\n")
+    line_count=0
+    for line in line_arr:
+        if re.search("^import",line):
+            print(line)
+        else:
+            line_arr.insert(line_count,"import "+name+" from './ "+name.lower()+"/ "+name+"';")
+            break
+        line_count+=1
+    line_count=0;
+    for line in line_arr:
+        if re.search("^\t+<Route path=",line):
+            print(line)
+        else:
+            line_arr.insert(line_count," <Route path=\"/"+name.lower()+"\" component={"+name+"} />")
+            break
+        line_count+=1
+    print("\n".join(line_arr))
+
+
 for i in range(1,len(sys.argv)): 	
     component=sys.argv[i]
-    os.mkdir(component)
-    js(component)
-    html(component)
-    css(component)
+    shutil.rmtree(path+component)
+    os.mkdir(path+component)
+    js(component.capitalize())
+    html(component.capitalize())
+    css(component.capitalize())
+    add_route(component.capitalize())
 
    
