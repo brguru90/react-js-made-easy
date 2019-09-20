@@ -1,10 +1,11 @@
 ## Available Scripts
 
-`./add component1 component2`
+### Add components like Angular cli
+#### `./add component1 component2`
  OR
-`python3 add component1 component2`
+#### `python3 add component1 component2`
 
-Add components like Angular cli<br />
+
 
 ### `./remove component1 component2`
 #### OR
