@@ -10,6 +10,8 @@
  OR
 #### `python3 remove.py component1 component2`
 
+
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
