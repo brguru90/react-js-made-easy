@@ -7,7 +7,7 @@
 Add components like Angular cli
 
 ### `./remove component1 component2`
-### OR
+#### OR
 ### `python3 remove component1 component2`
 
 Remove components
