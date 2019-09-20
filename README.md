@@ -4,7 +4,7 @@
 #### OR
 ### `python3 add component1 component2`
 
-Add components like Angular cli<br>
+Add components like Angular cli<br />
 
 ### `./remove component1 component2`
 #### OR
