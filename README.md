@@ -1,11 +1,11 @@
 ## Available Scripts
 
-### python3 add component1 component2
+### `python3 add component1 component2`
 
 Add components like Angular cli
 
 
-### python3 remove component1 component2
+### `python3 remove component1 component2`
 
 Remove components
 
