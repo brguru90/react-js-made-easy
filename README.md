@@ -1,3 +1,5 @@
+#### Do `npm i` before running
+
 ## Available Scripts
 
 ### Add components like Angular cli

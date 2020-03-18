@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {  Router, Route,Switch,BrowserRouter} from 'react-router-dom';
+import {  Router, Route,Switch,HashRouter} from 'react-router-dom';
 import Not_found from './Not_found/Not_found';
 import Test2 from './Test2/Test2';
 // import { Router, Route} from 'react-router'
@@ -15,16 +15,16 @@ import Test from './test/Test';
 const history = createBrowserHistory()
 
 ReactDOM.render((
-    <BrowserRouter>
     <Router history={history}>
-        <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/test" component={Test} />
+        <HashRouter>
+            <Switch>
+                <Route exact path="/" component={App} />
+                <Route path="/test" component={Test} />
 			<Route path="/test2" component={Test2} />
-			<Route component={Not_found} />
-        </Switch>
+                <Route component={Not_found} />
+            </Switch>
+        </HashRouter>        
     </Router>
-    </BrowserRouter>
 ), document.getElementById('root'))
 
 
