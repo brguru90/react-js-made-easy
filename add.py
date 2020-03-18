@@ -8,10 +8,19 @@ path="./src/"
 def js(name):
     content='''
 import React from 'react';
-import './'''+name+'''.css';
-import page from './'''+name+'''Html'
+import './'''+name+'''.scss';
+import Page from './'''+name+'''Html.jsx'
+var $ = require("jquery");
 
 class '''+name+''' extends React.Component {
+
+    references = {
+        test1: React.createRef()
+    }
+    test1 = () => {
+        //@ts-ignore
+        console.log($(this.references.test1.current).css({ "color": this.references.test1.current.value }))
+    }
 
     constructor(props) {
         super(props);
@@ -25,7 +34,7 @@ class '''+name+''' extends React.Component {
 
     render() {
         return (
-            page
+             <Page _this={this} references={this.references} /> 
         )
     }
 }
@@ -43,17 +52,23 @@ def html(name):
     content='''
 import React from 'react';
 import { Link } from 'react-router-dom';
-let page=
 
-<div className="'''+name+'''">
-    <h1>Welcome</h1>
-    <h2>'''+name+'''</h2>
-    <Link to='/'>App</Link>
-</div>
+let Page = function (props) {
+    let _this = props._this 
+    let references = props.references
+    return (
+        <div className="'''+name+'''">
+            <h1>Welcome</h1>
+            <h2>'''+name+'''</h2>
+            <Link to='/'>App</Link><br />
+            <input type="text" placeholder="Type color name" onChange={_this.test1} ref={references.test1}/>
+        </div>
+    )
+}
 
-export default page;
+export default Page;
     '''
-    w_path=path+component+"/"+component+"Html.js"
+    w_path=path+component+"/"+component+"Html.jsx"
     print(w_path)
     f = open(w_path, "w")
     f.write(content)
@@ -66,7 +81,7 @@ def css(name):
     text-align: center;
 }
 '''
-    w_path=path+component+"/"+component+".css"
+    w_path=path+component+"/"+component+".scss"
     print(w_path)
     f = open(w_path, "w")
     f.write(content)
