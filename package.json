@@ -10,7 +10,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
     "jquery": "^3.4.1",
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   },
   "scripts": {
     "start": "chmod +x add remove & react-scripts start",
